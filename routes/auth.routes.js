@@ -13,7 +13,7 @@ router.post('/login', [
 ], login);
 
 router.post('/singin', [
-    check('fullName', 'Nombr debe tener al menos 2 caracteres').isLength({min: 2}),
+    check('name', 'Nombr debe tener al menos 2 caracteres').isLength({min: 2}),
     check('email', 'Favor proporcionar un correo válido').isEmail(),
     check('password', 'Contraseña debe tener al menos 6 caracteres').isLength({min: 6}),
     validateFields

@@ -7,7 +7,8 @@ const login = async (req, res = response) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email });
-
+        console.log(user);
+        
         if (!user) {
             return res.status(404).json({
                 mensaje: 'Usuario y/o contraseña invalido'
@@ -29,7 +30,7 @@ const login = async (req, res = response) => {
         })
     } catch (error) {
         return res.status(500).json({
-            mensaje: 'Error de servidor, comuniquse con el administrador'
+            mensaje: 'Error de servidor, comuniquese con el administrador'
         })
     }
 }
@@ -43,7 +44,7 @@ const signUp = async(req, res) => {
     const token = await generarJWT(newUser.id);
     
     res.status(201).json({
-        token
+        token, newUser
     });
 }
 
