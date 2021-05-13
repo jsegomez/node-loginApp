@@ -34,4 +34,22 @@ const login = async (req, res = response) => {
     }
 }
 
-module.exports = { login }
+const signUp = async(req, res) => {
+    const {name, email, password} = req.body;
+    const user = new User({name, email, password});
+    
+    user.password = encryptPassword(password);
+    const newUser = await user.save();
+    const token = await generarJWT(newUser.id);
+    
+    res.status(201).json({
+        token
+    });
+}
+
+const encryptPassword = (passwd) => {
+    const salt = bcrypt.genSaltSync(11);
+    return bcrypt.hashSync(passwd, salt)
+}
+
+module.exports = { login, signUp }

@@ -22,18 +22,6 @@ const getUserById = async(req, res = response) => {
     })
 }
 
-const createUser = async(req, res) => {
-    const {name, email, password} = req.body;
-    const user = new User({name, email, password});
-    
-    user.password = encryptPassword(password);
-    await user.save();
-    
-    res.status(201).json({
-        user
-    });
-}
-
 const updateUser = async(req, res) => {
     const { id } = req.params;
     const { password, ... user} = req.body;
@@ -63,7 +51,7 @@ const encryptPassword = (passwd) => {
     return bcrypt.hashSync(passwd, salt)
 }
 
-module.exports = { createUser, getUserById, updateUser, getListUsers, deleteById }
+module.exports = { getUserById, updateUser, getListUsers, deleteById }
 
 
 
