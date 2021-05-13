@@ -12,8 +12,11 @@ const validateJWT = (req = request, res = response, next) => {
     }
 
     try {
-        const { uid } = jwt.verify(token, process.env.SECRETKEY);
-        next();
+        const uid = jwt.verify(token, process.env.SECRETKEY);
+        if(uid){
+            next();
+        }
+        
     } catch (error) {
         return res.status(500).json({
             mensaje: 'Error de aplicación, cominiquese con el administrador'

@@ -3,7 +3,7 @@ const User = require('../models/usuario.model');
 const verifyEmail = async(email= '') => {
     // check if mail exists
     const existEmail = await User.findOne({ email });
-    if (existEmail) {
+    if (existEmail) {        
         throw new Error(`Correo ya se encuentra registrado.`);
     }
 }
