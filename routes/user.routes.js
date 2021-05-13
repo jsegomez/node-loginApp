@@ -12,7 +12,7 @@ router.get('/list', validateJWT, getListUsers);
 router.get('/:id', [
     validateJWT,
     check('id', 'El ID proporcionado no es válido').isMongoId(),
-    check('id').custom(verifyIfMongoIdExist),    
+    check('id').custom(verifyIfMongoIdExist), 
     validateFields
 ],getUserById);
 
