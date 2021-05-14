@@ -6,7 +6,7 @@ const User = require('../models/usuario.model');
 
 const getListUsers = async(req, res = response) => {
     const { limit } = req.query;
-    const users = await User.find().limit(Number(limit) || 10 );
+    const users = await User.find();
 
     res.status(200).json({
         users        
